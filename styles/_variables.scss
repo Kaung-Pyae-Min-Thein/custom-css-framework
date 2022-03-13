@@ -3,6 +3,13 @@ $secondary: #1ac886;
 $error: #d32752;
 $info: #f6c31c;
 
+$colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "error": $error,
+  "info": $info,
+);
+
 $base-padding: 0.75rem;
 $base-margin: 0.75rem;
 
