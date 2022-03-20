@@ -1,0 +1,52 @@
+$utilities: (
+  "padding": (
+    "prefix": "p",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 4,
+      "4": $base-padding * 6,
+      "5": $base-padding * 8,
+    ),
+  ),
+  "margin": (
+    "prefix": "m",
+    "values": (
+      "0": 0,
+      "1": $base-margin,
+      "2": $base-margin * 2,
+      "3": $base-margin * 4,
+      "4": $base-margin * 6,
+      "5": $base-margin * 8,
+    ),
+  ),
+);
+
+//generating util class
+
+//first key
+@each $property, $map in $utilities {
+  //first map
+
+  //key prefix
+  $prefix: map-get($map, "prefix");
+  //key map values
+  $values: map-get($map, $key: "values");
+
+  //values map
+  @each $k, $v in $values {
+    //check the value of key
+    @if ($k == default) {
+      //.m
+      .#{$prefix} {
+        //padding : 35
+        #{$property}: $v;
+      }
+    } @else {
+      .#{$prefix}-#{$k} {
+        #{$property}: $v;
+      }
+    }
+  }
+}
