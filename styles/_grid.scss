@@ -1,0 +1,103 @@
+@use "sass:math";
+$grid-columns: 12;
+
+$gutters: (
+  "0": 0,
+  "1": 10px,
+  "2": 20px,
+  "3": 30px,
+  "4": 40px,
+  "5": 50px,
+);
+
+$content-aligns: flex-start, flex-end, center, space-around, space-between,
+  space-evenly;
+
+//base container
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+//row class
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+//gap
+@each $key, $val in $gutters {
+  //add padding to direct child items
+  .gap-#{$key} > * {
+    padding: $val;
+  }
+  //if add padding to child in all directions, have to subtract margin from whole div to take entire row
+
+  // padding add လိုက်လို့ ေရှ့ဆံုးနဲ့ ေနာက်ဆံုးမှာ margin ပြန်နှုတ်မှ row တစ်ခုလံုးအပြည့်ပြန်ဖြစ်မှာ။ နုိ့မို့ဆို ေရှ့ဆံုးမှာ padding auto ဝင် ေနမှာ
+
+  .gap-#{$key} {
+    margin-left: -$val;
+    margin-right: -$val;
+  }
+}
+//justify-content
+@each $j in $content-aligns {
+  .justify-#{$j} {
+    justify-content: $j;
+  }
+}
+
+//col classes
+// usage col-xs-3
+@include xs {
+  @for $i from 1 through 12 {
+    .col-xs-#{$i} {
+      box-sizing: border-box;
+      //not to take space over others
+      flex-grow: 0;
+      width: math.div($i * 100%, $grid-columns);
+    }
+  }
+}
+
+@include sm {
+  @for $i from 1 through 12 {
+    .col-sm-#{$i} {
+      box-sizing: border-box;
+      flex-grow: 0;
+      width: math.div($i * 100%, $grid-columns);
+    }
+  }
+}
+
+@include md {
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      box-sizing: border-box;
+      flex-grow: 0;
+      width: math.div($i * 100%, $grid-columns);
+    }
+  }
+}
+
+@include lg {
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      box-sizing: border-box;
+      flex-grow: 0;
+      width: math.div($i * 100%, $grid-columns);
+    }
+  }
+}
+
+@include xl {
+  @for $i from 1 through 12 {
+    .col-xl-#{$i} {
+      box-sizing: border-box;
+      flex-grow: 0;
+      width: math.div($i * 100%, $grid-columns);
+    }
+  }
+}
